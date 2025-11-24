@@ -14,11 +14,6 @@ let conn = {
 }
 
 let author = 'Itsuki-IA'
-let sgc = 'https://instagram.com'
-let sig = 'https://instagram.com'
-let sfb = 'https://facebook.com'
-let snh = 'https://tiktok.com'
-let syt = 'https://youtube.com'
 
 global.docs = ['doc1', 'doc2', 'doc3']
 global.nomorown = '573187418668@s.whatsapp.net'
@@ -26,9 +21,7 @@ global.metanombre = 'Meta AI'
 
 global.idchannel = '120363403726798403@newsletter'
 global.namechannel = '𝆺𝅥 𝆭 ִ ֗ 🍉 𝐈𝐭𝐬𝐮𝐤𝐢 ┆ 𝐍𝐚𝐤𝐚𝐧𝐨𝐯2 𝐏𝐫𝐞𝐦𝐁𝐨𝐭 ✨ ౨ৎ˚₊‧'
-let icono = 'https://files.catbox.moe/ncb958.jpg'
-let iconoden = 'https://raw.githubusercontent.com/WillZek/Storage-CB2/main/images/d110942e81b3.jpg'
-let iconodev = 'https://raw.githubusercontent.com/WillZek/Storage-CB2/main/images/d110942e81b3.jpg' 
+global.icono = 'https://files.catbox.moe/ncb958.jpg'
 
 global.rwait = '🕒'
 global.done = '✅'
@@ -83,6 +76,8 @@ try {
   ]
   global.pppkecil = AraChu2.getRandom()
   global.ucapan = ucapan()
+
+  // TODO CON rcanal
   global.ppkecil = {
     contextInfo: {
       externalAdReply: {
@@ -98,107 +93,17 @@ try {
     }
   }
 
-  global.adReplyS = {
-    fileLength: SizeDoc(),
-    seconds: SizeDoc(),
-    contextInfo: {
-      forwardingScore: SizeDoc(),
-      externalAdReply: {
-        containsAutoReply: true,
-        showAdAttribution: false,
-        title: "👋 " + Sapa() + Pagi(),
-        body: author,
-        mediaUrl: sgc,
-        description: "𝆺𝅥 𝆭 ִ ֗ 🍉 𝐈𝐭𝐬𝐮𝐤𝐢 ┆ 𝐍𝐚𝐤𝐚𝐧𝐨𝐯2 𝐏𝐫𝐞𝐦𝐁𝐨𝐭 ✨ ౨ৎ˚₊‧",
-        previewType: "PHOTO",
-        thumbnail: fs.readFileSync("./src/Images/55111188_p0.jpg"),
-        sourceUrl: "https://whatsapp.com/channel/0029VbBQ5sf4NVioq39Efn0v",
-      }
-    }
-  }
+  global.adReplyS = global.rcanal
 
-  global.adReply = {
-    fileLength: SizeDoc(),
-    seconds: SizeDoc(),
-    contextInfo: {
-      forwardingScore: SizeDoc(),
-      externalAdReply: {
-        body: author,
-        containsAutoReply: true,
-        mediaType: 1,
-        mediaUrl: sgc,
-        renderLargerThumbnail: false,
-        showAdAttribution: false,
-        sourceId: "𝆺𝅥 𝆭 ִ ֗ 🍉 𝐈𝐭𝐬𝐮𝐤𝐢 ┆ 𝐍𝐚𝐤𝐚𝐧𝐨𝐯2 𝐏𝐫𝐞𝐦𝐁𝐨𝐭 ✨ ౨ৎ˚₊‧",
-        sourceType: "PDF",
-        previewType: "PDF",
-        sourceUrl: sgc,
-        thumbnail: fs.readFileSync("./src/Images/55111188_p0.jpg"),
-        thumbnailUrl: AraChu2.getRandom(), // Usando AraChu2 en lugar de global.logo
-        title: "👋 " + Sapa() + Pagi()
-      }
-    }
-  }
+  global.adReply = global.rcanal
 
-  global.fakeig = {
-    contextInfo: {
-      externalAdReply: {
-        showAdAttribution: false,
-        mediaUrl: sig,
-        mediaType: "VIDEO",
-        description: "Sigue: " + sig,
-        title: "👋 " + Sapa() + Pagi(),
-        body: author,
-        thumbnailUrl: AraChu2.getRandom(), // Usando AraChu2 en lugar de global.logo
-        sourceUrl: sgc
-      }
-    }
-  }
+  global.fakeig = global.rcanal
 
-  global.fakefb = {
-    contextInfo: {
-      externalAdReply: {
-        showAdAttribution: false,
-        mediaUrl: sfb,
-        mediaType: "VIDEO",
-        description: "Sigue: " + sig,
-        title: "👋 " + Sapa() + Pagi(),
-        body: author,
-        thumbnailUrl: AraChu2.getRandom(), // Usando AraChu2 en lugar de global.logo
-        sourceUrl: sgc
-      }
-    }
-  }
+  global.fakefb = global.rcanal
 
-  global.faketik = {
-    contextInfo: {
-      externalAdReply: {
-        showAdAttribution: false,
-        mediaUrl: snh,
-        mediaType: "VIDEO",
-        description: "Sigue: " + sig,
-        title: "👋 " + Sapa() + Pagi(),
-        body: author,
-        thumbnailUrl: AraChu2.getRandom(), // Usando AraChu2 en lugar de global.logo
-        sourceUrl: snh
-      }
-    }
-  }
+  global.faketik = global.rcanal
 
-  global.fakeyt = {
-    contextInfo: {
-      externalAdReply: {
-        showAdAttribution: false,
-        mediaUrl: syt,
-        mediaType: "VIDEO",
-        description: "Sigue: " + sig,
-        title: "👋 " + Sapa() + Pagi(),
-        body: author,
-        thumbnailUrl: AraChu2.getRandom(), // Usando AraChu2 en lugar de global.logo
-        sourceUrl: syt
-      }
-    }
-  }
+  global.fakeyt = global.rcanal
 
   global.metaai = {
     key: {
@@ -221,134 +126,30 @@ try {
 
   global.botname = global.botname || namechannel
 
-  // CORREGIDO: Usando AraChu2 en lugar de global.iconorcanal
+  // SOLO rcanal
   global.rcanal = {
     contextInfo: {
       externalAdReply: {
         title: global.botname,
-        mediaType: 1, // Cambiado a PHOTO
+        mediaType: 1,
         previewType: "PHOTO",
-        thumbnailUrl: AraChu2.getRandom(), // Usando AraChu2 en lugar de global.iconorcanal
+        thumbnailUrl: global.icono,
         sourceUrl: ""
       }
     }
   }
 
-  global.rcanalw = {
-    contextInfo: {
-      isForwarded: true,
-      forwardedNewsletterMessageInfo: {
-        newsletterJid: idchannel,
-        serverMessageId: 100,
-        newsletterName: namechannel,
-      },
-      externalAdReply: {
-        title: '𝆺𝅥 𝆭 ִ ֗ 🍉 𝐈𝐭𝐬𝐮𝐤𝐢 ┆ 𝐍𝐚𝐤𝐚𝐧𝐨𝐯2 𝐏𝐫𝐞𝐦𝐁𝐨𝐭 ✨ ౨ৎ˚₊‧',
-        body: '',
-        mediaUrl: null,
-        description: null,
-        previewType: "PHOTO",
-        thumbnailUrl: icono,
-        mediaType: 1,
-        renderLargerThumbnail: false,
-      },
-    },
-  }
+  global.rcanalw = global.rcanal
 
-  global.rcanalden2 = {
-    contextInfo: {
-      isForwarded: true,
-      forwardedNewsletterMessageInfo: {
-        newsletterJid: idchannel,
-        serverMessageId: 100,
-        newsletterName: namechannel,
-      },
-    },
-  }
+  global.rcanalden2 = global.rcanal
 
-  global.rcanalx = {
-    contextInfo: {
-      isForwarded: true,
-      forwardedNewsletterMessageInfo: {
-        newsletterJid: idchannel,
-        serverMessageId: 100,
-        newsletterName: namechannel,
-      },
-      externalAdReply: {
-        title: '𝆺𝅥 𝆭 ִ ֗ 🍉 𝐈𝐭𝐬𝐮𝐤𝐢 ┆ 𝐍𝐚𝐤𝐚𝐧𝐨𝐯2 𝐏𝐫𝐞𝐦𝐁𝐨𝐭 ✨ ౨ৎ˚₊‧',
-        body: '',
-        mediaUrl: null,
-        description: null,
-        previewType: "PHOTO",
-        thumbnailUrl: icono,
-        mediaType: 1,
-        renderLargerThumbnail: false,
-      },
-    },
-  }
+  global.rcanalx = global.rcanal
 
-  global.rcanalr = {
-    contextInfo: {
-      isForwarded: true,
-      forwardedNewsletterMessageInfo: {
-        newsletterJid: idchannel,
-        serverMessageId: 100,
-        newsletterName: namechannel,
-      },
-      externalAdReply: {
-        title: '𝆺𝅥 𝆭 ִ ֗ 🍉 𝐈𝐭𝐬𝐮𝐤𝐢 ┆ 𝐍𝐚𝐤𝐚𝐧𝐨𝐯2 𝐏𝐫𝐞𝐦𝐁𝐨𝐭 ✨ ౨ৎ˚₊‧',
-        body: '',
-        mediaUrl: null,
-        description: null,
-        previewType: "PHOTO",
-        thumbnailUrl: icono,
-        mediaType: 1,
-        renderLargerThumbnail: false,
-      },
-    },
-  }
+  global.rcanalr = global.rcanal
 
-  global.rcanalden = {
-    contextInfo: {
-      isForwarded: true,
-      forwardedNewsletterMessageInfo: {
-        newsletterJid: idchannel,
-        serverMessageId: 100,
-        newsletterName: namechannel,
-      },
-      externalAdReply: {
-        title: '🔓 𝗔𝗰𝗰𝘀𝗲𝘀𝗼 𝗡𝗼 𝗣𝗲𝗿𝗺𝗶𝘁𝗶𝗱𝗼',
-        body: '',
-        mediaUrl: null,
-        description: null,
-        previewType: "PHOTO",
-        thumbnailUrl: iconoden,
-        mediaType: 1,
-        renderLargerThumbnail: false,
-      },
-    },
-  }
+  global.rcanalden = global.rcanal
 
-  global.rcanaldev = {
-    contextInfo: {
-      isForwarded: true,
-      forwardedNewsletterMessageInfo: {
-        newsletterJid: idchannel,
-        serverMessageId: 100,
-        newsletterName: namechannel,
-      },
-      externalAdReply: {
-        title: '🛠️ 𝗗𝗲𝘃',
-        body: '',
-        mediaUrl: null,
-        description: null,
-        previewType: 'PHOTO',
-        thumbnailUrl: iconodev,
-        mediaType: 1,
-        renderLargerThumbnail: false,
-      },
-    },
-  }
+  global.rcanaldev = global.rcanal
 
   global.fakes = Fakes()
 
