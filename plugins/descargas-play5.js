@@ -2,79 +2,30 @@ import fetch from 'node-fetch'
 
 const thumbnailUrl = 'https://qu.ax/Asbfq.jpg'
 
-const contextInfo = {
-  externalAdReply: {
-    title: '📺 𝙔𝙤𝙪𝙏𝙪𝙗𝙚 𝙑𝙞𝙙𝙚𝙤',
-    body: '𝙄𝙩𝙨𝙪𝙠𝙞 𝙉𝙖𝙠𝙖𝙣𝙤 𝙄𝘼',
-    mediaType: 1,
-    previewType: 0,
-    mediaUrl: 'https://youtube.com',
-    sourceUrl: 'https://youtube.com',
-    thumbnailUrl: 'https://files.catbox.moe/zh5z6m.jpg'
-  }
-}
-
 const handler = async (m, { conn, args, command, usedPrefix }) => {
-  // Contextos decorativos (fallbacks incluidos)
-  const ctxErr = global.rcanalx || {
-    contextInfo: {
-      externalAdReply: {
-        title: '❌ 𝙀𝙧𝙧𝙤𝙧',
-        body: '𝙄𝙩𝙨𝙪𝙠𝙞 𝙉𝙖𝙠𝙖𝙣𝙤 𝙄𝘼',
-        thumbnailUrl: 'https://files.catbox.moe/zh5z6m.jpg',
-        sourceUrl: global.canalOficial || ''
-      }
-    }
-  }
-  const ctxWarn = global.rcanalw || {
-    contextInfo: {
-      externalAdReply: {
-        title: '⚠️ 𝘼𝙙𝙫𝙚𝙧𝙩𝙚𝙣𝙘𝙞𝙖',
-        body: '𝙄𝙩𝙨𝙪𝙠𝙞 𝙉𝙖𝙠𝙖𝙣𝙤 𝙄𝘼',
-        thumbnailUrl: 'https://files.catbox.moe/zh5z6m.jpg',
-        sourceUrl: global.canalOficial || ''
-      }
-    }
-  }
-  const ctxOk = global.rcanalr || {
-    contextInfo: {
-      externalAdReply: {
-        title: '✅ 𝘼𝙘𝙘𝙞ó𝙣',
-        body: '𝙄𝙩𝙨𝙪𝙠𝙞 𝙉𝙖𝙠𝙖𝙣𝙤 𝙄𝘼',
-        thumbnailUrl: 'https://qu.ax/QGAVS.jpg',
-        sourceUrl: global.canalOficial || ''
-      }
-    }
-  }
-
   const input = args.join(' ').trim()
   if (!input) {
-    // reacción y mensaje instructivo con decoración Itsuki
-    await conn.sendMessage(m.chat, { react: { text: '🌀', key: m.key } })
-    return conn.sendMessage(
-      m.chat,
-      {
-        text: `> ꒰⌢ ʚ˚₊‧ 🔍 ꒱꒱ :: *BÚSQUEDA DE VIDEO* ıllı
+    await conn.sendMessage(m.chat, { react: { text: '🎄', key: m.key } })
+    return conn.reply(m.chat, 
+`> 🎅 *¡NAVIDAD EN YOUTUBE!* 🎁
 
-> ੭੭ ﹙ ⚠️ ﹚:: *Parámetro requerido*
+> 📺 *DESCARGADOR DE VIDEO NAVIDEÑO*
 
-\`\`\`Debes ingresar el nombre o enlace del video de YouTube.\`\`\`
+> ❌ *Uso incorrecto*
 
-*Ejemplo:*
-> ${usedPrefix + command} DJ Malam Pagi
-> ${usedPrefix + command} Naruto Opening
+\`\`\`Debes ingresar el nombre o enlace del video de YouTube\`\`\`
 
-‐ ダ *ɪᴛsᴜᴋɪ ɴᴀᴋᴀɴᴏ ᴀɪ* ギ`,
-        ...ctxWarn
-      },
-      { quoted: m }
-    )
+> *Ejemplos navideños:*
+> • ${usedPrefix + command} villancicos navideños
+> • ${usedPrefix + command} canciones de navidad en video
+> • ${usedPrefix + command} música navideña video
+
+> 🎄 *¡Itsuki Nakano V3 descargará tu video!* 🎅`, m)
   }
 
-  await conn.sendMessage(m.chat, { react: { text: '🔎', key: m.key } })
+  await conn.sendMessage(m.chat, { react: { text: '🕑', key: m.key } })
 
   try {
-    // Llamada a la API
     const res = await fetch(
       `https://api.vreden.my.id/api/v1/download/play/video?query=${encodeURIComponent(input)}`
     )
@@ -91,44 +42,33 @@ const handler = async (m, { conn, args, command, usedPrefix }) => {
 
     await conn.sendMessage(m.chat, { react: { text: '🎶', key: m.key } })
 
-    const msgInfo = `
-> ꒰⌢ ʚ˚₊‧ 📺 ꒱꒱ :: *INFORMACIÓN DEL VIDEO* ıllı
+    const msgInfo = 
+`> 🎄 *INFORMACIÓN DEL VIDEO NAVIDEÑO* 🎅
 
-> ੭੭ ﹙ 🎵 ﹚:: *Título*
-\`\`\`${metadata.title}\`\`\`
-
-> ੭੭ ﹙ ⏱️ ﹚:: *Duración*
-\`\`\`${metadata.duration.timestamp}\`\`\`
-
-> ੭੭ ﹙ 👀 ﹚:: *Vistas*
-\`\`\`${metadata.views.toLocaleString()}\`\`\`
-
-> ੭੭ ﹙ 🧑‍🎤 ﹚:: *Autor*
-\`\`\`${metadata.author.name}\`\`\`
-
-> ੭੭ ﹙ 💽 ﹚:: *Calidad*
+> 🏷 *Título:*
+> \`\`\`${metadata.title}\`\`\`
+> ⏱️ *Duración:*
+> \`\`\`${metadata.duration.timestamp}\`\`\`
+> 👀 *Vistas:*
+> \`\`\`${metadata.views.toLocaleString()}\`\`\`
+> 👑 *Autor:*
+> \`\`\`${metadata.author.name}\`\`\`
+> 🌌 *Calidad:*
 \`\`\`${download.quality}\`\`\`
 
-> ੭੭ ﹙ 🔗 ﹚:: *Enlace Original*
-${metadata.url}
+> 🎅 *¡Itsuki Nakano V3 encontró tu video!* 🎄`
 
-‐ ダ *ɪᴛsᴜᴋɪ ɴᴀᴋᴀɴᴏ ᴀɪ* ギ
-`.trim()
-
-    // Enviar mini tarjeta + thumbnail (con contextInfo estilo Itsuki)
     await conn.sendMessage(
       m.chat,
       {
         image: { url: metadata.thumbnail || thumbnailUrl },
-        caption: msgInfo,
-        ...ctxOk
+        caption: msgInfo
       },
       { quoted: m }
     )
 
     await conn.sendMessage(m.chat, { react: { text: '📥', key: m.key } })
 
-    // Descargar video (buffer) y enviar como archivo
     const videoRes = await fetch(download.url)
     if (!videoRes.ok) throw new Error(`Código HTTP ${videoRes.status}`)
     const buffer = await videoRes.buffer()
@@ -138,17 +78,16 @@ ${metadata.url}
       {
         video: buffer,
         mimetype: 'video/mp4',
-        fileName: download.filename || 'video.mp4',
-        caption: `> ꒰⌢ ʚ˚₊‧ ✅ ꒱꒱ :: *VIDEO DESCARGADO* ıllı
+        fileName: download.filename || 'video_navidad.mp4',
+        caption: `> 🎄 *VIDEO NAVIDEÑO DESCARGADO* 🎅
 
-> ੭੭ ﹙ 🎬 ﹚:: *Título*
+> 🏷 *Título:*
 \`\`\`${metadata.title}\`\`\`
-
-> ੭੭ ﹙ 📁 ﹚:: *Calidad*
+> 🌌 *Calidad:*
 \`\`\`${download.quality}\`\`\`
 
-‐ ダ *ɪᴛsᴜᴋɪ ɴᴀᴋᴀɴᴏ ᴀɪ* ギ`,
-        ...ctxOk
+> 🎁 *¡Disfruta de tu contenido navideño!*
+> 🎅 *Itsuki Nakano V3 te desea felices fiestas* 🎄`
       },
       { quoted: m }
     )
@@ -156,29 +95,28 @@ ${metadata.url}
     await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } })
   } catch (error) {
     await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } })
-    console.error('Error en el comando play5:', error)
+    console.error('🎄 Error en play5:', error)
 
-    return conn.reply(
-      m.chat,
-      `> ꒰⌢ ʚ˚₊‧ ❌ ꒱꒱ :: *ERROR EN DESCARGA* ıllı
+    return conn.reply(m.chat, 
+`> 🎄 *¡ERROR EN DESCARGA NAVIDEÑA!* 🎅
 
-> ੭੭ ﹙ ⚠️ ﹚:: *Error detectado*
+> ❌ *No se pudo descargar el video*
 
+> 📝 *Detalles:*
 \`\`\`${error.message || 'Error desconocido'}\`\`\`
 
-*Posibles causas:*
-• Video no disponible
-• API temporalmente caída
-• Enlace incorrecto
+> 🔍 *Posibles causas:*
+> • Video no disponible
+> • API temporalmente caída  
+> • Enlace incorrecto
+> • Problemas de conexión
 
-*Solución:*
-• Intenta con otro nombre o enlace
-• Espera unos minutos y vuelve a intentar
+> 🎅 *Sugerencias:*
+> • Verifica el nombre del video
+> • Intenta con otro término de búsqueda
+> • Espera un momento y vuelve a intentar
 
-‐ ダ *ɪᴛsᴜᴋɪ ɴᴀᴋᴀɴᴏ ᴀɪ* ギ`,
-      m,
-      ctxErr
-    )
+> 🎄 *¡Itsuki Nakano V3 lo intentará de nuevo!* 🎁`, m)
   }
 }
 
