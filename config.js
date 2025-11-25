@@ -1,14 +1,9 @@
+import { fileURLToPath } from 'url'
 import { watchFile, unwatchFile } from 'fs'
+import path from 'path'
 import chalk from 'chalk'
-import { fileURLToPath, pathToFileURL } from 'url'
-import fs from 'fs'
-import * as cheerio from 'cheerio'
-import fetch from 'node-fetch'
-import axios from 'axios'
-import moment from 'moment-timezone'
-import { dirname } from 'path' 
 
-global.__dirname = (url) => dirname(fileURLToPath(url));
+global.__dirname = (url) => path.dirname(fileURLToPath(url));
 
 // Configuraciones principales
 global.roowner = ['573187418668'] // Solo el root owner (dueño principal)
@@ -18,7 +13,7 @@ global.owner = [
    ['5216641784469', 'BrayanOFC', true],
    ['51921826291', '𝐒𝐨𝐲𝐌𝐚𝐲𝐜𝐨𝐥 <𝟑', true],
    ['50493732693', 'Ado 🐢', true],
-   ['5216671548329', 'Legna', true]
+   ['5216671548329', 'Legna', true],
    ['50496228919', '𝐒𝐨𝐩𝐨𝐫𝐭𝐞 𝐱 𝐒𝐭𝐚𝐟𝐟 𝐈𝐭𝐬𝐮𝐤𝐢 👨🏻‍💻👑', true]
 ];
 
@@ -55,11 +50,6 @@ global.listo = '*Aqui tiene*'
 global.moneda = 'Yenes'
 global.multiplier = 69
 global.maxwarn = 3
-global.cheerio = cheerio
-global.fs = fs
-global.fetch = fetch
-global.axios = axios
-global.moment = moment
 
 // Enlaces oficiales del bot
 global.gp1 = 'https://chat.whatsapp.com/EteP5pnrAZC14y9wReGF1V'
@@ -94,7 +84,6 @@ global.SIPUTZX_AI = {
   headers: { accept: '*/*' }
 }
 
-
 global.chatDefaults = {
   isBanned: false,
   sAutoresponder: '',
@@ -124,7 +113,7 @@ let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
   unwatchFile(file)
   console.log(chalk.redBright("Update 'config.js'"))
-  try { import(pathToFileURL(file).href + `?update=${Date.now()}`) } catch {}
+  try { import(new URL(file, import.meta.url).href + `?update=${Date.now()}`) } catch {}
 })
 
 // Configuraciones finales
