@@ -183,7 +183,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
   }
 };
 
-handler.command = ['play5'];
+handler.command = ['play7'];
 handler.tags = ['downloader'];
 handler.help = ['play5'];
 handler.group = true;
