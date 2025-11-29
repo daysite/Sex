@@ -50,7 +50,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       let comandos = help.filter(menu => menu.tags.some(tag => catTags.includes(tag)))
 
       if (comandos.length) {
-        menuText += `> ꒰⌢ ʚ˚₊‧ ✐ ꒱ » \`${catName}\` «\n`
+        menuText += `> ꒰⌢ ʚ˚₊‧ » \`${catName}\` «\n`
         let uniqueCommands = [...new Set(comandos.flatMap(menu => menu.help))]
         for (let cmd of uniqueCommands) {
           menuText += `> ⤷ ﹙✰﹚ ❄︎ \`\`\`${_p}${cmd}\`\`\`\n`
@@ -121,15 +121,59 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
 // Quoted especial con mini-thumbnail
 async function makeFkontak() {
   try {
-    const res = await fetch('https://cdn.russellxz.click/64bba973.jpg')
-    const thumb2 = Buffer.from(await res.arrayBuffer())
+    // Usar axios en lugar de fetch para mayor compatibilidad
+    const { default: axios } = await import('axios')
+    const response = await axios.get('https://cdn.russellxz.click/64bba973.jpg', { 
+      responseType: 'arraybuffer' 
+    })
+    const thumb2 = Buffer.from(response.data)
     return {
-      key: { participants: '0@s.whatsapp.net', remoteJid: 'status@broadcast', fromMe: false, id: 'Halo' },
-      message: { locationMessage: { name: 'ItsukiV3', jpegThumbnail: thumb2 } },
+      key: { 
+        participant: '0@s.whatsapp.net', 
+        remoteJid: 'status@broadcast', 
+        fromMe: false, 
+        id: 'Halo' 
+      },
+      message: { 
+        documentMessage: {
+          url: 'https://cdn.russellxz.click/64bba973.jpg',
+          mimetype: 'image/jpeg',
+          fileSha256: thumb2.slice(-20),
+          fileLength: thumb2.length,
+          pageCount: 1,
+          mediaKey: '',
+          fileName: 'ItsukiV3.jpg',
+          fileEncSha256: '',
+          directPath: '/v/t62.7118-24/',
+          mediaKeyTimestamp: Math.floor(Date.now() / 1000),
+          jpegThumbnail: thumb2,
+          contextInfo: {
+            externalAdReply: {
+              title: 'Itsuki Nakano V3',
+              body: '✨ Menu Interactivo',
+              mediaType: 1,
+              thumbnail: thumb2,
+              sourceUrl: 'https://whatsapp.com/channel/0029VbBvZH5LNSa4ovSSbQ2N'
+            }
+          }
+        }
+      },
       participant: '0@s.whatsapp.net'
     }
-  } catch {
-    return undefined
+  } catch (error) {
+    console.error('Error en makeFkontak:', error)
+    return {
+      key: { 
+        participant: '0@s.whatsapp.net', 
+        remoteJid: 'status@broadcast', 
+        fromMe: false, 
+        id: 'Halo' 
+      },
+      message: { 
+        conversation: 'Itsuki Nakano V3 - Menu Interactivo' 
+      },
+      participant: '0@s.whatsapp.net'
+    }
   }
 }
 
