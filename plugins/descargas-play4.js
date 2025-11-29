@@ -1,7 +1,12 @@
 import fetch from 'node-fetch';
 
-const handler = async (m, { conn, text, command }) => {
-  if (!text) return m.reply('🎄 *¡Ingresa el nombre de la música que deseas buscar!* 🎅\n\n> ⓘ Ejemplo: .play vamos nena');
+const handler = async (m, { conn, text, command, usedPrefix }) => {
+  if (!text) return conn.reply(m.chat, `> ⓘ USO INCORRECTO
+
+> ❌ Debes ingresar el nombre de la música
+
+> 📝 Ejemplo:
+> • ${usedPrefix + command} nombre de la canción`, m);
 
   try {
     await conn.sendMessage(m.chat, { react: { text: '🕑', key: m.key } })
@@ -10,24 +15,25 @@ const handler = async (m, { conn, text, command }) => {
     const searchJson = await searchRes.json();
 
     if (!searchJson.status || !searchJson.result?.length) {
-      return m.reply('> 🎁 *¡No se encontraron resultados!*\n\n> ⓘ Intenta con otro nombre de canción navideña 🎅');
+      return conn.reply(m.chat, `> ⓘ SIN RESULTADOS
+
+> ❌ No se encontraron resultados
+
+> 💡 Intenta con otro nombre`, m);
     }
 
-    await conn.sendMessage(m.chat, { react: { text: '🎧', key: m.key } })
+    await conn.sendMessage(m.chat, { react: { text: '🎵', key: m.key } })
 
     const video = searchJson.result[0];
     const { title, channel, duration, imageUrl, link } = video;
 
-    const info = `
-🎄 *Y O U T U B E - P L A Y* 🎅
+    const info = `> *ⓘ Y O U T U B E - P L A Y S V4*
 
-*ⓘ ᴛɪᴛᴜʟᴏ »* ${title}
-*ⓘ ᴄᴀɴᴀʟ »* ${channel}
-*ⓘ ᴅᴜʀᴀᴄɪᴏɴ »* ${duration}
-*ⓘ ᴇɴʟᴀɴᴄᴇ »* ${link}
-
-🎅 *¡Que disfrutes tu música navideña!* 🎄
-`.trim();
+> *🏷️ ${title}*
+> *📺 ${channel}*
+> *⏱️ ${duration}*
+> *🔗 ${link}*
+> *🎬 Tipo: ${command === 'play5' ? 'Audio MP3' : 'Video MP4'}*`;
 
     const thumb = await (await fetch(imageUrl)).arrayBuffer();
     await conn.sendMessage(m.chat, { image: Buffer.from(thumb), caption: info }, { quoted: m });
@@ -37,14 +43,18 @@ const handler = async (m, { conn, text, command }) => {
       const json = await res.json();
 
       if (!json.status || !json.result?.download?.url) {
-        return m.reply('🎁 *¡No se pudo obtener el audio!*\n\n> ⓘ Intenta con otra canción navideña 🎄');
+        return conn.reply(m.chat, `> ⓘ ERROR
+
+> ❌ No se pudo obtener el audio
+
+> 💡 Intenta con otra canción`, m);
       }
 
       await conn.sendMessage(
         m.chat,
         {
           audio: { url: json.result.download.url },
-          fileName: `🎄 ${title}.mp3`,
+          fileName: `${title}.mp3`,
           mimetype: 'audio/mpeg',
           ptt: false
         },
@@ -59,26 +69,42 @@ const handler = async (m, { conn, text, command }) => {
       const json = await res.json();
 
       if (!json.status || !json.result?.download?.url) {
-        return m.reply('🎁 *¡No se pudo obtener el video!*\n\n> ⓘ Intenta con otro video navideño 🎅');
+        return conn.reply(m.chat, `> ⓘ ERROR
+
+> ❌ No se pudo obtener el video
+
+> 💡 Intenta con otro video`, m);
       }
 
       await conn.sendMessage(
         m.chat,
         {
           video: { url: json.result.download.url },
-          fileName: `> ${title} (360p).mp4`,
+          fileName: `${title}.mp4`,
           mimetype: 'video/mp4',
-          caption: info
+          caption: `> *ⓘ Y O U T U B E - P L A Y S V4*
+
+> *🏷️ ${title}*
+> *📺 ${channel}*
+> *⏱️ ${duration}*
+> *🎬 Formato: MP4*
+> *📊 Calidad: 360p*
+> *🌐 Servidor: Las Quintillizas*`
         },
         { quoted: m }
       );
 
-      await conn.sendMessage(m.chat, { react: { text: '🎬', key: m.key } })
+      await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } })
     }
 
   } catch (e) {
     console.error('[play] Error:', e);
-    m.reply('🎄 *¡Error al procesar tu solicitud navideña!*\n\n> ⓘ Intenta de nuevo en un momento 🎅');
+    await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } })
+    conn.reply(m.chat, `> ⓘ ERROR
+
+> ❌ ${e.message}
+
+> 💡 Intenta más tarde`, m);
   }
 };
 
