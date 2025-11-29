@@ -1,17 +1,3 @@
-/*
-██████╗░██╗░░░██╗███████╗███████╗
-██╔══██╗╚██╗░██╔╝╚════██║██╔════╝
-██████╔╝░╚████╔╝░░░███╔═╝█████╗░░
-██╔══██╗░░╚██╔╝░░██╔══╝░░██╔══╝░░
-██║░░██║░░░██║░░░███████╗███████╗
-╚═╝░░╚═╝░░░╚═╝░░░╚══════╝╚══════╝
-Creado - By AyeitsRyze
-Contacto - https://wa.me/+15614809253
-Copyright 2025 - All rights reserved
-
-Comando: Demote (quitar admin)
-*/
-
 async function makeFkontak() {
   try {
     const res = await fetch('https://i.postimg.cc/rFfVL8Ps/image.jpg')
@@ -29,7 +15,7 @@ async function makeFkontak() {
 const handler = async (m, { conn, text, participants, isAdmin, isBotAdmin }) => {
   try {
     if (!m.isGroup) return
-    
+
     // Verificar permisos primero
     if (!isBotAdmin) return
     if (!isAdmin) return
@@ -78,18 +64,16 @@ const handler = async (m, { conn, text, participants, isAdmin, isBotAdmin }) => 
       
     } catch (error) {
       await m.react('❌')
-      console.error('Error en demote:', error)
     }
 
   } catch (error) {
     await m.react('❌')
-    console.error('Error general en demote:', error)
   }
 }
 
 handler.help = ['demote']
 handler.tags = ['group']
-handler.command = /^(demote|degradar|quitaradmin)$/i
+handler.command = /^(demote)$/i
 handler.group = true
 handler.admin = true
 handler.botAdmin = true
