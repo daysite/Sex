@@ -2,7 +2,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
   const currency = global.currency || 'Yenes'
 
   if (!db.data.chats[m.chat].economy && m.isGroup) {
-    return conn.reply(m.chat, `> ⓘ ECONOMIA DESACTIVADA\n\n❌ Los comandos de economía están desactivados\n\n📝 Administrador activa con:\n${usedPrefix}economy on`, m)
+    return conn.reply(m.chat, '> \\`🚫 ECONOMIA DESACTIVADA\\`\n\n> \\`❌ Los comandos de economía están desactivados\\`\n\n> \\`📝 Administrador activa con:\\`\n> \\`${usedPrefix}economy on\\`', m)
   }
 
   let user = global.db.data.users[m.sender]
@@ -15,7 +15,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
   if (ahora < user.lastcrime) {
     const restante = user.lastcrime - ahora
     const wait = formatTimeMs(restante)
-    return conn.reply(m.chat, `> ⓘ TIEMPO DE ESPERA\n\n⏰ Debes esperar: ${wait}`, m)
+    return conn.reply(m.chat, `> \\`⏰ TIEMPO DE ESPERA\\`\n\n> \\`⏳ Debes esperar:\\` *${wait}*`, m)
   }
 
   user.lastcrime = ahora + cooldown
@@ -27,11 +27,12 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     cantidad = Math.floor(Math.random() * 2001) + 5000
     user.coin += cantidad
 
+    await m.react('✅')
     await conn.reply(m.chat, 
-      `> ⓘ ACCION EXITOSA\n\n` +
-      `${evento.mensaje}\n\n` +
-      `💰 Ganancia: +¥${cantidad.toLocaleString()}\n` +
-      `🎒 Cartera: ¥${user.coin.toLocaleString()}`,
+      `> \\`✅ ACCION EXITOSA\\`\n\n` +
+      `> \\`${evento.mensaje}\\`\n\n` +
+      `> \\`💰 Ganancia:\\` *+¥${cantidad.toLocaleString()}*\n` +
+      `> \\`🎒 Cartera:\\` *¥${user.coin.toLocaleString()}*`,
       m
     )
   } else {
@@ -39,11 +40,12 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     user.coin -= cantidad
     if (user.coin < 0) user.coin = 0
 
+    await m.react('❌')
     await conn.reply(m.chat,
-      `> ⓘ ACCION FALLIDA\n\n` +
-      `${evento.mensaje}\n\n` +
-      `💸 Perdida: -¥${cantidad.toLocaleString()}\n` +
-      `🎒 Cartera: ¥${user.coin.toLocaleString()}`,
+      `> \\`❌ ACCION FALLIDA\\`\n\n` +
+      `> \\`${evento.mensaje}\\`\n\n` +
+      `> \\`💸 Perdida:\\` *-¥${cantidad.toLocaleString()}*\n` +
+      `> \\`🎒 Cartera:\\` *¥${user.coin.toLocaleString()}*`,
       m
     )
   }
