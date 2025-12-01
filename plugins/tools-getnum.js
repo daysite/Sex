@@ -103,7 +103,7 @@ const startPolling = async (conn, userId, number) => {
              }
           }
 
-          const smsText = `*𖥻 ׁ ׅ  Nuevo SMS ! ׁ ׅ 🛎*
+          const smsText = `*𖥻 ׁ ׅ  Nuevo SMS ! ׁ ׅ 🌴*
 
 ৎ٠࣪⭑🧃𝄢 Código : ${otpRaw}
 ৎ٠࣪⭑🧃𝄢 País : Venezuela ${COUNTRIES.venezuela.emoji}
@@ -137,7 +137,7 @@ ${cleanContent}`
                                       {
                                           name: "cta_copy",
                                           buttonParamsJson: JSON.stringify({
-                                              display_text: "📋 𝗖𝗼𝗽𝗶𝗮𝗿 𝗖𝗼́𝗱𝗶𝗴𝗼",
+                                              display_text: "🫟 𝗖𝗼𝗽𝗶𝗮𝗿 𝗖𝗼́𝗱𝗶𝗴𝗼",
                                               id: "copy_otp",
                                               copy_code: otpClean 
                                           })
@@ -246,7 +246,7 @@ let handler = async (m, { conn }) => {
   userNumbers[userId] = { number: currentNumber, message: sentMsg }
 }
 
-handler.command = ['getnum'] 
+handler.command = /^(numvirtual|númerovirtual|nvirtual)$/i
 handler.help = ['numvirtual']
 handler.tags = ['tools']
 
