@@ -21,7 +21,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
 
  ִ \`I N F O - B O T\` ! ୧ ֹ 
    
-> ੭੭﹙❐﹚ \`bot :\` *soy ItsukiV3*
+> ੭੭﹙❐﹚ \`bot :\` *ItsukiV3*
 > ੭੭﹙❐﹚ \`Ping :\` *${speed} ms*
 > ੭੭﹙❐﹚ \`Uptime :\` *${await getUptime()}*
 > ੭੭﹙❐﹚ \`RAM :\` *${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)}* MB
@@ -53,7 +53,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
         menuText += `> ꒰⌢ ʚ˚₊‧ » \`${catName}\` «\n`
         let uniqueCommands = [...new Set(comandos.flatMap(menu => menu.help))]
         for (let cmd of uniqueCommands) {
-          menuText += `> ⤷ ﹙✰﹚ ❄︎ \`\`\`${_p}${cmd}\`\`\`\n`
+          menuText += `> ੭੭﹙⤷﹚ ❄︎ \`\`\`${_p}${cmd}\`\`\`\n`
         }
         menuText += `> ︶꒦︶꒷︶︶꒷꒦︶︶︶꒷꒦‧ ₊˚・\n\n`
       }
