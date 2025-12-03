@@ -43,7 +43,7 @@ say('ItsukiNakanoV3', {
 });
 
 // Mensaje adicional rosado
-say('BOT MULTI-DEVICE', {
+say('', {
   font: 'block',
   align: 'center',
   colors: ['#FF69B4'],
