@@ -19,13 +19,10 @@
 
 </div>
 
+<summary><b> ➮ 𝗡𝗲𝘄 𝗨𝗽𝗱𝗮𝘁𝗲 🗞️</b></summary>
+
 # 🍒 **ItsukiBot - Versión V3**  
 ## *¡Asombroso con nuevas opciones!*  
-
-## [🟢 **CLIC AQUÍ PARA VER NOVEDADES**](#NewUpdate)
-*(Toca el botón para ver todas las novedades de Itsuki V3)*
-
----
 
 <div id="NewUpdate">
 
