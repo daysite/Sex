@@ -295,7 +295,7 @@ user.name = nuevo
 }} catch {}
 const chat = global.db.data.chats[m.chat]
 const settings = global.db.data.settings[this.user.jid]  
-const isROwner = [...global.owner.map((number) => number)].map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
+const isROwner = [...global.owner.map(([number]) => number)].map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
 const isOwner = isROwner || m.fromMe
 
 if (chat?.rootowner && !isROwner) {
