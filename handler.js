@@ -718,7 +718,7 @@ global.dfail = (type, m, conn) => {
         unreg: `> \`ⓘ ᥒᥱᥴᥱsі𝗍ᥲs ᥱs𝗍ᥲr rᥱgіs𝗍rᥲძ᥆(ᥲ) ⍴ᥲrᥲ ᥙsᥲr ᥱs𝗍ᥱ ᥴ᥆mᥲᥒძ᥆, ᥱsᥴrіᑲ᥆ #rᥱg ⍴ᥲrᥲ rᥱgіs𝗍rᥲr𝗍ᥱ.\``,
         restrict: '> `ⓘ ᥴ᥆mᥲᥒძ᥆ rᥱs𝗍rіᥒgіძ᥆ ⍴᥆r ძᥱᥴіsі᥆ᥒ ძᥱᥣ ⍴r᥆⍴іᥱ𝗍ᥲrі᥆ ძᥱᥣ ᑲ᥆𝗍.`'
     }[type];
-if (msg) return conn.reply(m.chat, msg, m, global.rcanal).then(_ => m.react('❌️'))
+if (msg) return conn.reply(m.chat, msg, m, global.rcanal).then(_ => m.react('✖️'))
 }
 
 global.detectPrefix = detectPrefix
