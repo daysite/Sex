@@ -685,7 +685,9 @@ try {
 await plugin.after.call(this, m, extra)
 } catch (err) {
 console.error(err)
-}}}}}} catch (err) {
+}}}
+break
+}}} catch (err) {
 console.error(err)
 } finally {
 if (opts["queque"] && m.text) {
